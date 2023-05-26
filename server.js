@@ -5,13 +5,17 @@ const exphbs = require("express-handlebars");
 const routes = require("./controllers");
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 const sequelize = require("./config/connection");
+const crypto = require("crypto");
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+// Generate a secure secret key
+const secret = crypto.randomBytes(64).toString("hex");
+
 // set up sessions and connect to our Sequelize database
 const sess = {
-  secret: "Super secret secret",
+  secret: secret,
   // set cookie to expire in 15 minutes
   cookie: {
     maxAge: 900000,
