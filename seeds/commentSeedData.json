@@ -1,0 +1,27 @@
+[
+  {
+    "comment_text": "That was very informative!",
+    "user_id": 2,
+    "post_id": 3
+  },
+  {
+    "comment_text": "Great explanation! Really helped me understand the concept.",
+    "user_id": 8,
+    "post_id": 6
+  },
+  {
+    "comment_text": "I have a question regarding the implementation. Can you provide more details?",
+    "user_id": 5,
+    "post_id": 9
+  },
+  {
+    "comment_text": "Awesome article! Can't wait to try it out myself.",
+    "user_id": 1,
+    "post_id": 4
+  },
+  {
+    "comment_text": "I'm not sure I understand. Can you explain it in more detail?",
+    "user_id": 10,
+    "post_id": 7
+  }
+]

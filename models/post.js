@@ -51,17 +51,6 @@ Post.init(
     },
   },
   {
-    // add hooks to format date and time
-    // hooks: {
-    //   beforeCreate: async (newPostData) => {
-    //     newPostData.title = await newPostData.title.toLowerCase();
-    //     return newPostData;
-    //   },
-    //   beforeUpdate: async (updatedPostData) => {
-    //     updatedPostData.title = await updatedPostData.title.toLowerCase();
-    //     return updatedPostData;
-    //   },
-    // },
     sequelize,
     timestamps: false,
     freezeTableName: true,

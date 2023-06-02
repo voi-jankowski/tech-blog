@@ -1,0 +1,67 @@
+[
+  {
+    "username": "Emma",
+    "email": "emma.johnson@gmail.com",
+    "password": "P@ssw0rd"
+  },
+  {
+    "username": "William",
+    "email": "william.brown@yahoo.com",
+    "password": "S3cur3P@ss"
+  },
+  {
+    "username": "Sophie",
+    "email": "sophiechen@hotmail.com",
+    "password": "P@ssword1"
+  },
+  {
+    "username": "James",
+    "email": "jameslee1234@gmail.com",
+    "password": "L3tm3in!"
+  },
+  {
+    "username": "Olivia",
+    "email": "oliviawang@outlook.com",
+    "password": "P@ssword!"
+  },
+  {
+    "username": "Noah",
+    "email": "noahliu5678@gmail.com",
+    "password": "P@ssword2"
+  },
+  {
+    "username": "Ava",
+    "email": "avazhang123@gmail.com",
+    "password": "P@ssw0rd!"
+  },
+  {
+    "username": "Ethan",
+    "email": "ethan.garcia@yahoo.com",
+    "password": "S3cur3P@ssw0rd"
+  },
+  {
+    "username": "Isabella",
+    "email": "isabella.nguyen@hotmail.com",
+    "password": "P@ssword3"
+  },
+  {
+    "username": "Liam",
+    "email": "liamtran5678@gmail.com",
+    "password": "P@ssword!"
+  },
+  {
+    "username": "Mia",
+    "email": "miamartin123@gmail.com",
+    "password": "P@ssw0rd2"
+  },
+  {
+    "username": "Benjamin",
+    "email": "benjamin.gupta@yahoo.com",
+    "password": "L3tm3in"
+  },
+  {
+    "username": "Charlotte",
+    "email": "charlottekim5678@outlook.com",
+    "password": "P@ssword1!"
+  }
+]
