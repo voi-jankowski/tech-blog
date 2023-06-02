@@ -13,11 +13,16 @@ router.post("/", async (req, res) => {
     // create a new user
     const user = await User.create({ username, email, password });
 
-    // save the user session and redirect to the home page
+    // Create session variables based on the logged in user
+    req.session.user_id = user.id;
+    req.session.username = user.username;
+    req.session.loggedIn = true;
+
     req.session.save(() => {
-      req.session.user_id = user.id;
-      req.session.username = user.username;
-      req.session.loggedIn = true;
+      res.json({
+        user: userData,
+        message: "You are now signed in as a new user!",
+      });
       res.redirect("/dashboard");
     });
   } catch (err) {
