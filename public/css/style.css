@@ -5,4 +5,20 @@
   --grey: #f0f0f0;
   --yellow: #f9d949;
   --red: #f45050;
+  --yellow-press: #f09c53;
+}
+
+/* Update the color variables used by Materialize components */
+.nav-extended {
+  background-color: var(--navy);
+  .dropdown-content {
+    background-color: var(--grey);
+  }
+  .dropdown-content li a {
+    color: var(--navy);
+  }
+}
+
+ul li a:hover {
+  background-color: var(--yellow) !important;
 }
