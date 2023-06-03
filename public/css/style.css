@@ -9,6 +9,14 @@
 }
 
 /* Update the color variables used by Materialize components */
+
+body {
+  background-color: var(--grey);
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
 .nav-extended {
   background-color: var(--navy);
   .dropdown-content {
@@ -19,6 +27,78 @@
   }
 }
 
-ul li a:hover {
+nav li a:hover {
   background-color: var(--yellow) !important;
+}
+
+main {
+  margin: 0 14% auto;
+  flex: 1 0 auto;
+}
+
+.collection-item {
+  border: 3px solid var(--red);
+  border-radius: 5px;
+  .title {
+    color: var(--navy);
+    background-color: var(--red);
+  }
+  .secondary-content {
+    color: var(--navy);
+  }
+  .extended-content {
+    display: none;
+    /* background-color: var(--yellow);
+    border: 1px solid var(--navy);
+    border-radius: 5px;
+    color: var(--navy);
+    padding: 10px; */
+  }
+}
+
+.card {
+  background-color: var(--navy);
+  /* border: 3px solid var(--yellow); */
+  .card-title {
+    color: var(--yellow);
+  }
+  .card-content {
+    color: var(--grey);
+  }
+  .card-action {
+    background-color: var(--grey);
+    /* border-top: 3px solid var(--red); */
+  }
+
+  .card-action:hover {
+    background-color: var(--yellow);
+  }
+  .collapsible-header {
+    background-color: var(--grey);
+    color: var(--navy);
+    border: 3px solid var(--yellow);
+  }
+  .badge {
+    color: var(--navy);
+  }
+  .new.badge {
+    background-color: var(--red);
+    color: var(--grey);
+  }
+  .collapsible-body {
+    background-color: var(--grey);
+    color: var(--navy);
+    border: 3px solid var(--yellow);
+  }
+  .btn-floating {
+    background-color: var(--red);
+    color: var(--grey);
+  }
+}
+
+.page-footer {
+  background-color: var(--navy);
+  color: var(--grey);
+  padding: 20px;
+  text-align: center;
 }
