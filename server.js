@@ -32,14 +32,14 @@ const sess = {
 };
 
 // Set up Handlebars.js engine with custom helpers
-// const hbs = exphbs.create({ helpers });
+const hbs = exphbs.create({ helpers });
 
 app.use(session(sess));
 
 // Inform Express.js on which template engine to use
-// app.engine("handlebars", hbs.engine);
-// app.set("view engine", "handlebars");
-// app.set("views", path.join(__dirname, "views"));
+app.engine("handlebars", hbs.engine);
+app.set("view engine", "handlebars");
+app.set("views", path.join(__dirname, "views"));
 
 // Middleware
 app.use(express.json());

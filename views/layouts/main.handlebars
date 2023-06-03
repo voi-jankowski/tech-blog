@@ -7,23 +7,75 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
     />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+
     <link rel="stylesheet" href="../../public/css/style.css" />
     <title>Tech Blog</title>
   </head>
   <body>
+    <!-- Created navbar that is fixed on top and with dropdown menu on md or lower -->
+    <div id="main-nav" class="navbar-fixed">
+      <nav class="nav-extended">
+        <div class="container">
+          <div class="nav-wrapper">
+            <a href="index.html" class="brand-logo">
+              <link /><img class="img" src="" alt="" />
+            </a>
+            <a href="#" class="brand-logo">Tech Blog</a>
+            <!-- Menu icon only appearing on mobiles and tablets. -->
+            <a
+              href="#"
+              data-target="mobile-menu"
+              class="dropdown-trigger hide-on-large-only"
+            ><i class="material-icons">menu</i></a>
 
-    <div class="navbar-fixed">
-      <nav>
-        <div class="nav-wrapper">
-          <a href="#!" class="brand-logo">Logo</a>
-          <ul class="right hide-on-med-and-down">
-            <li><a href="sass.html">Sass</a></li>
-            <li><a href="badges.html">Components</a></li>
-          </ul>
+            <!-- Nav bar to the right only appearing of larger screens. -->
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+              <li><a href="">Home</a></li>
+              <li><a href="">Dashboard</a></li>
+              {{#if loggedIn}}
+                <li><a href="">Logout</a></li>
+              {{else}}
+                <li><a href="">Signup</a></li>
+                <li><a href="">Login</a></li>
+              {{/if}}
+            </ul>
+          </div>
         </div>
       </nav>
     </div>
+    <!-- dropdown nav menu -->
+    <ul id="mobile-menu" class="dropdown-content">
+      <li><a href="">Home</a></li>
+      <li><a href="">Dashboard</a></li>
+      {{#if loggedIn}}
+        <li><a href="">Logout</a></li>
+      {{else}}
+        <li><a href="">Signup</a></li>
+        <li><a href="">Login</a></li>
+      {{/if}}
+    </ul>
 
+    <br />
+    <main>
+      {{{body}}}
+    </main>
+
+    <footer class="page-footer">
+      <div class="footer-copyright">
+        <div class="container">
+          Enjoy blogging!
+          <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+        </div>
+      </div>
+    </footer>
+
+    <script
+      src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"
+    ></script>
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"
     ></script>
