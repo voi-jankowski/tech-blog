@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const User = require("../../models");
+const { User } = require("../../models");
 
 // Create a new user
 router.post("/", async (req, res) => {
@@ -11,7 +11,7 @@ router.post("/", async (req, res) => {
       return res.status(409).json({ message: "User already exists" });
     }
     // create a new user
-    const user = await User.create({ username, email, password });
+    const newUser = await User.create({ username, email, password });
 
     // Create session variables based on the logged in user
     req.session.user_id = user.id;
@@ -20,7 +20,7 @@ router.post("/", async (req, res) => {
 
     req.session.save(() => {
       res.json({
-        user: userData,
+        user: newUser,
         message: "You are now signed in as a new user!",
       });
       res.redirect("/dashboard");
@@ -39,7 +39,7 @@ router.put("/update", async (req, res) => {
       { username, email, password },
       { where: { id: req.session.user_id } }
     );
-    res.redirect("/dashboard");
+    res.json({ message: "Passwrord updated" }).redirect("/dashboard");
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
