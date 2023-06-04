@@ -4,6 +4,7 @@
   --navy: #3c486b;
   --grey: #f0f0f0;
   --yellow: #f9d949;
+  --yellow-light: #f8e48a;
   --red: #f45050;
   --yellow-press: #f09c53;
 }
@@ -36,6 +37,11 @@ nav li a:hover {
 main {
   margin: 0 14% auto;
   flex: 1 0 auto;
+}
+
+.page-title {
+  color: var(--navy);
+  margin: 1rem;
 }
 
 .collection-item {
@@ -76,7 +82,7 @@ main {
   }
 
   .card-action:hover {
-    background-color: var(--yellow);
+    background-color: var(--yellow-light);
   }
   .collapsible-header {
     background-color: var(--grey);
@@ -95,10 +101,35 @@ main {
     color: var(--navy);
     border: 3px solid var(--yellow);
   }
-  .btn-floating {
-    background-color: var(--red);
-    color: var(--grey);
-  }
+}
+
+/* Styling of buttons  */
+.every-btn {
+  background-color: var(--red);
+  color: var(--grey);
+  text-transform: capitalize !important;
+}
+.every-btn:hover {
+  background-color: var(--yellow);
+  color: var(--grey);
+}
+.every-btn:active {
+  background-color: var(--yellow-press);
+  color: var(--grey);
+}
+
+.btn-floating {
+  margin-top: -1.5rem;
+}
+
+.btn-large {
+  margin: 0.5rem;
+  font-size: 1.5rem;
+}
+
+.create-btn {
+  margin-right: 1.5ram;
+  margin-bottom: 1.5ram;
 }
 
 .page-footer {
