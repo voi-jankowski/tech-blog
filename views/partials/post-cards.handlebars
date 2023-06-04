@@ -1,0 +1,35 @@
+<div class="card darken-1 hoverable">
+  <div class="card-content">
+    <h5 class="post-title bolder">{{title}}</h5>
+    <br>
+    <p>
+      {{content}}
+    </p>
+    <h6 class="right-align">Posted by <span class="bolder">{{user.username}}</span></h6>
+  </div>
+  <div class="card-action">
+    <ul class="collapsible popout">
+      <li>
+        <div class="collapsible-header">
+          <i class="material-icons">comment</i>Comments
+          <span class="badge">{{comments.length}}</span>
+        </div>
+        {{#if comments}}
+        {{#each comments as |comment|}}
+        <div class="collapsible-body">
+          <p>{{comment_text}}</p>
+          <h6> - {{user.username}}</h6>
+
+        {{/each}}
+        {{else}}
+        <div class="collapsible-body">
+            <p>No comments yet!</p>
+        {{/if}}
+          <a
+            class="btn-floating right btn-small waves-effect waves-light pulse"
+          ><i class="material-icons">add</i></a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
