@@ -16,8 +16,9 @@ $(document).ready(function () {
   M.updateTextFields();
 });
 
+// Resize the text areas automatically when the text is long
 M.textareaAutoResize($("#edit-post-content"));
-// M.textareaAutoResize($("#create-post-textarea"));
+M.textareaAutoResize($("#create-post-textarea"));
 
 // Initialize modal
 $(document).ready(function () {
@@ -123,7 +124,7 @@ const loginFormHandler = async (event) => {
       window.location.replace("/dashboard");
     } else {
       if (response.status === 400) {
-        window.location.replace("/dashboard?status=400");
+        window.location.replace("/?status=400");
       } else {
         console.log("failed to log in");
         console.log(response);

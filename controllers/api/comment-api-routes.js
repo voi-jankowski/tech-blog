@@ -9,7 +9,7 @@ routes.post("/:id", async (req, res) => {
       user_id: req.session.user_id,
       post_id: req.params.id,
     });
-    res.status(200).json(commentData).redirect(`/post/:${req.params.id}`);
+    res.status(200).redirect(`/dashboard`);
   } catch (err) {
     res.status(400).json(err);
   }

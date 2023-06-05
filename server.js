@@ -14,6 +14,9 @@ const PORT = process.env.PORT || 3001;
 const secret = crypto.randomBytes(64).toString("hex");
 
 // set up sessions and connect to our Sequelize database
+const store = new SequelizeStore({
+  db: sequelize,
+});
 const sess = {
   secret: secret,
   // set cookie to expire in 15 minutes
@@ -26,9 +29,7 @@ const sess = {
   },
   resave: false,
   saveUninitialized: true,
-  store: new SequelizeStore({
-    db: sequelize,
-  }),
+  store: store,
 };
 
 // Set up Handlebars.js engine with custom helpers
@@ -50,8 +51,10 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(routes);
 
 // turn on connection to db and server
-sequelize.sync({ force: false }).then(() => {
-  app.listen(PORT, () =>
-    console.log(`Now listening on http://localhost:${PORT}`)
-  );
+store.sync().then(() => {
+  sequelize.sync({ force: false }).then(() => {
+    app.listen(PORT, () =>
+      console.log(`Now listening on http://localhost:${PORT}`)
+    );
+  });
 });
