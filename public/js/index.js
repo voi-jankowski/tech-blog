@@ -132,3 +132,5 @@ const newPostFormHandler = async (event) => {
     }
   }
 };
+
+$("#create-post-submit").on("click", newPostFormHandler);

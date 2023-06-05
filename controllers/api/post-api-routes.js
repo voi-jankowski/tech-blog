@@ -9,7 +9,7 @@ router.post("/", async (req, res) => {
       content: req.body.content,
       user_id: req.session.user_id,
     });
-    res.status(200).json(postData).redirect("/dashboard");
+    res.status(200).redirect("/dashboard");
   } catch (err) {
     res.status(400).json(err);
   }

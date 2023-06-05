@@ -11,27 +11,92 @@
 ><i class="material-icons left">create</i>Create New Post</a>
 
 <br />
-<div class="page-title">
-  <h5>Your Posts</h5>
-</div>
+{{#if userPosts}}
+  <div class="page-title">
+    <h5>Your Posts</h5>
+  </div>
 
-<!-- Create your blog posts with cards -->
+  <!-- Create your blog posts with cards -->
 
-<div class="row">
-  <div class="col s12 m12">
-    <div class="card darken-1 hoverable">
-      <div class="card-content white-text">
-        <span class="card-title bolder">Post Title</span>
-        <p>
-          This is a very fun blog post about anything you need to know about web
-          development.
-        </p>
-      </div>
-      <div class="card-action">
-        <ul class="collapsible popout">
+  <div class="row">
+    <div class="col s12 m12">
+      {{#each userPosts as |userPost|}}
 
-        </ul>
-      </div>
+        <div class="card darken-1 hoverable">
+          <div class="card-content">
+            <h5 class="post-title bolder">{{title}}</h5>
+            <br />
+            <p>
+              {{content}}
+            </p>
+            <h6 class="right-align">Posted by
+              <span class="bolder">{{user.username}}</span></h6>
+          </div>
+          <div class="card-action">
+            <ul class="collapsible popout">
+
+              <li>
+                <div class="collapsible-header">
+                  <i class="material-icons">edit</i>Edit your post
+                </div>
+                <div class="collapsible-body">
+                  <!-- Alert info -->
+                  <div class="row">
+                    <h6 class="col s6">
+                      Follow the link to edit your post
+                      <i class="material-icons right">arrow_forward</i>
+                    </h6>
+                    <!-- Edit button -->
+                    <div class="col s6">
+                      <a
+                        class="every-btn btn waves-effect waves-light"
+                        href="/edit/{{id}}"
+                      >
+                        Edit
+                        <i class="material-icons right">edit</i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="collapsible-header">
+                  <i class="material-icons">delete</i>Delete your post
+                </div>
+                <div class="collapsible-body">
+                  <!-- Alert info -->
+                  <div class="row">
+                    <h6 class="col s6">
+                      Are you sure you want to delete this post?
+                    </h6>
+                    <!-- Delete button -->
+                    <div class="col s6">
+                      <button
+                        class="every-btn btn waves-effect waves-light"
+                        type="submit"
+                        name="action"
+                      >
+                        Delete
+                        <i class="material-icons right">delete</i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+      {{/each}}
+
     </div>
   </div>
-</div>
+
+{{else}}
+
+  <!-- If there are no posts, display this message -->
+  <div class="page-title">
+    <h5>You have no posts yet. Create one!</h5>
+  </div>
+
+{{/if}}
