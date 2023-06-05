@@ -21,8 +21,8 @@ $(document).ready(function () {
 $("#textarea1").val(
   "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
 );
-M.textareaAutoResize($("#textarea1"));
-M.textareaAutoResize($("#create-post-textarea"));
+// M.textareaAutoResize($("#textarea1"));
+// M.textareaAutoResize($("#create-post-textarea"));
 
 // Initialize modal
 $(document).ready(function () {
@@ -55,7 +55,7 @@ const loginFormHandler = async (event) => {
 
   if (usernameLogin && passwordLogin) {
     // Send a POST request to the API endpoint
-    const response = await fetch("/api/users/login", {
+    const response = await fetch("/api/login", {
       method: "POST",
       body: JSON.stringify(loginData),
       headers: { "Content-Type": "application/json" },
@@ -66,7 +66,7 @@ const loginFormHandler = async (event) => {
       location.reload(); // Refresh the page
     } else {
       console.log("failed to log in");
-      alert(response.statusText);
+      console.log(response);
     }
   }
 };

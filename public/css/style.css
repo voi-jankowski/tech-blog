@@ -44,6 +44,10 @@ main {
   margin: 1rem;
 }
 
+.helper-text {
+  color: var(--red) !important;
+}
+
 .collection-item {
   border: 3px solid var(--red);
   border-radius: 5px;

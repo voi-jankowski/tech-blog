@@ -1,37 +1,46 @@
 const router = require("express").Router();
 var bcrypt = require("bcryptjs");
-const { User } = require("../../models/user");
+const User = require("../../models/user");
 
 // Login route
 router.post("/", async (req, res) => {
   try {
-    // Find the user who matches the posted e-mail address
-    const userData = await User.findOne({ where: { email: req.body.email } });
-    if (!userData) {
+    console.log("req.body:");
+    console.log(req.body);
+    // Find the user who matches the posted username
+    const userData = await User.findOne({
+      where: { username: req.body.username },
+    });
+
+    const user = userData.get({ plain: true });
+    console.log("user:");
+    console.log(user);
+    // If there is no matching user, return an error
+    if (!user) {
       res
         .status(400)
-        .json({ message: "Incorrect email or password, please try again" });
+        .json({ message: "Incorrect username or password, please try again" });
       return;
     }
-    // Verify the posted password with the password store in the database
+
+    // Verify the posted password with the password stored in the database
     const validPassword = await bcrypt.compare(
       req.body.password,
-      userData.password
+      user.password
     );
     if (!validPassword) {
       res
         .status(400)
-        .json({ message: "Incorrect email or password, please try again" });
+        .json({ message: "Incorrect username or password, please try again" });
       return;
     }
     // Create session variables based on the logged in user
-    req.session.user_id = user.id;
-    req.session.username = user.username;
+    req.session.user_id = user.id; // Corrected variable name
+    req.session.username = user.username; // Corrected variable name
     req.session.loggedIn = true;
 
     req.session.save(() => {
-      res.json({ user: userData, message: "You are now logged in!" });
-      res.redirect("/dashboard");
+      res.status(200).redirect("/dashboard");
     });
   } catch (err) {
     res.status(400).json(err);
