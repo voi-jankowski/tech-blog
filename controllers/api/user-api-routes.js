@@ -14,8 +14,8 @@ router.post("/", async (req, res) => {
     const newUser = await User.create({ username, email, password });
 
     // Create session variables based on the logged in user
-    req.session.user_id = user.id;
-    req.session.username = user.username;
+    req.session.user_id = newUser.id;
+    req.session.username = newUser.username;
     req.session.loggedIn = true;
 
     req.session.save(() => {

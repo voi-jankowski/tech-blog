@@ -1,11 +1,11 @@
 <div class="page-title">
   <h4>Create a New Account</h4>
   <h5>Fill out all the fields below and create your account.</h5>
+  <br />
+  {{#if errorMessage}}
+    <h5 class="user-alert">{{errorMessage}}</h5>
+  {{/if}}
 </div>
-
-{{#if errorMessage}}
-  <h5 class="user-alert">{{errorMessage}}</h5>
-{{/if}}
 
 <div class="row">
   <form class="col s12">
