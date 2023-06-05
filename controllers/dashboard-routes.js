@@ -44,8 +44,8 @@ router.get("/", withAuth, async (req, res) => {
 // Create a new post route
 router.get("/new", withAuth, async (req, res) => {
   try {
-    // If there is status=400  query parameter, then render the dashboard template with an error message
-    if (req.url.includes("status=400")) {
+    // If there is status=failed  query parameter, then render the dashboard template with an error message
+    if (req.url.includes("status=failed")) {
       const errorMessage = "Something went wrong. Please try again.";
       res.render("new-post", {
         errorMessage,
@@ -66,15 +66,22 @@ router.get("/edit/:id", withAuth, async (req, res) => {
   try {
     const postData = await Post.findByPk(req.params.id);
 
-    if (!postData) {
-      res.status(404).json({ message: "No post found with this id!" });
+    // Serialize the data
+    const post = postData.get({ plain: true });
+    // console.log("post:");
+    // console.log(post);
+
+    // If there is status=failed  query parameter, then render the dashboard template with an error message
+    if (req.url.includes("status=failed")) {
+      const errorMessage = "Something went wrong. Please try again.";
+      res.render("edit-post", {
+        post,
+        errorMessage,
+        loggedIn: req.session.loggedIn,
+      });
       return;
     }
 
-    // Serialize the data
-    const post = postData.get({ plain: true });
-    console.log("post:");
-    console.log(post);
     res.render("edit-post", {
       post,
       loggedIn: req.session.loggedIn,

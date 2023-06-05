@@ -16,7 +16,7 @@ $(document).ready(function () {
   M.updateTextFields();
 });
 
-// M.textareaAutoResize($("#textarea1"));
+M.textareaAutoResize($("#edit-post-content"));
 // M.textareaAutoResize($("#create-post-textarea"));
 
 // Initialize modal
@@ -75,7 +75,7 @@ const loginFormHandler = async (event) => {
       window.location.replace("/dashboard");
     } else {
       if (response.status === 400) {
-        window.location.replace("/?status=400");
+        window.location.replace("/dashboard?status=400");
       } else {
         console.log("failed to log in");
         console.log(response);
@@ -118,14 +118,53 @@ const newPostFormHandler = async (event) => {
     });
 
     if (response.ok) {
-      console.log("post created");
       window.location.replace("/dashboard");
     } else {
-      console.log("failed to create post");
-      console.log(response);
-      window.location.replace("/dashboard/new?status=400");
+      window.location.replace("/dashboard/new?status=failed");
     }
   }
 };
 
 $("#create-post-submit").on("click", newPostFormHandler);
+
+// Edit post function
+const editPostFormHandler = async (event) => {
+  event.preventDefault();
+
+  // Collect values from the login form
+  const title = $("#edit-post-title").val().trim();
+  const content = $("#edit-post-content").val().trim();
+  const post_id = $("#edit-post-id").val();
+
+  if (title === "") {
+    $("#edit-title-error").text("Please, enter a title!");
+  }
+
+  if (content === "") {
+    $("#edit-content-error").text("Please, enter content!");
+  }
+
+  // Create an object with the title and content
+  const postData = {
+    title,
+    content,
+  };
+  console.log(postData);
+
+  if (title && content) {
+    // Send a PUT request to the API endpoint
+    const response = await fetch(`/api/post/${post_id}`, {
+      method: "PUT",
+      body: JSON.stringify(postData),
+      headers: { "Content-Type": "application/json" },
+    });
+
+    if (response.ok) {
+      window.location.replace("/dashboard");
+    } else {
+      window.location.replace(`/dashboard/edit/${post_id}?status=failed`);
+    }
+  }
+};
+
+$("#edit-post-submit").on("click", editPostFormHandler);

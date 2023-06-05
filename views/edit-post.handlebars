@@ -1,23 +1,37 @@
+<div class="page-title">
+  <h4>Edit Your Post</h4>
+  {{#if errorMessage}}
+    <h5 class="user-alert">{{errorMessage}}</h5>
+  {{/if}}
+  <h5>Edit the required fiels below and save the changes.</h5>
+</div>
+
 <!-- Update form -->
 <div class="row">
   <form class="col s12">
     <div class="row">
       <div class="input-field col s12">
-        <input value="{{title}}" id="update-post-title" type="text" />
-        <label class="active" for="update-post-title">Post Title</label>
+        <input value="{{post.title}}" id="edit-post-title" type="text" />
+        <label class="active" for="edit-post-title">Post Title</label>
+        <span class="helper-text" id="edit-title-error"></span>
       </div>
     </div>
 
     <div class="row">
       <div class="input-field col s12">
-        <textarea id="textarea1" class="materialize-textarea"></textarea>
-        <label for="textarea1">Post Content</label>
+        <textarea
+          id="edit-post-content"
+          class="materialize-textarea"
+        ></textarea>
+        <label for="edit-post-content">Post Content</label>
+        <span class="helper-text" id="edit-content-error"></span>
       </div>
     </div>
   </form>
 </div>
 <!-- Submit Button -->
 <button
+  id="edit-post-submit"
   class="every-btn btn waves-effect waves-light"
   type="submit"
   name="action"
@@ -26,6 +40,13 @@
   <i class="material-icons right">save</i>
 </button>
 
+<input
+  class="custom-hidden"
+  id="edit-post-id"
+  value="{{post.id}}"
+  type="text"
+/>
+
 <script>
-  $("#textarea1").val("{{content}}");
+  document.querySelector("#edit-post-content").value = "{{post.content}}";
 </script>
