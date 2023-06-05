@@ -39,6 +39,54 @@ $(document).ready(function () {
 });
 
 // Sign up function
+const signupFormHandler = async (event) => {
+  event.preventDefault();
+
+  // Collect values from the signup form
+  const username = $("#create-username").val().trim();
+  const email = $("#create-email").val().trim();
+  const password = $("#create-password").val().trim();
+
+  if (username === "") {
+    $("#create-username-error").text("Please, enter a username!");
+  }
+
+  if (email === "") {
+    $("#create-email-error").text("Please, enter an email!");
+  }
+
+  if (password === "") {
+    $("#create-password-error").text("Please, enter a password!");
+  }
+
+  // Create an object with the username, email and password
+  const signupData = {
+    username: username,
+    email: email,
+    password: password,
+  };
+
+  if (username && email && password) {
+    // Send a POST request to the API endpoint
+    const response = await fetch("/api/user", {
+      method: "POST",
+      body: JSON.stringify(signupData),
+      headers: { "Content-Type": "application/json" },
+    });
+
+    if (response.ok) {
+      window.location.replace("/dashboard");
+    } else {
+      if (response.status === 409) {
+        window.location.replace("/signup?status=409");
+      } else {
+        window.location.replace("/signup?status=fail");
+      }
+    }
+  }
+};
+
+$("#create-account-submit").on("click", signupFormHandler);
 
 // Login function
 const loginFormHandler = async (event) => {

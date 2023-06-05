@@ -23,7 +23,6 @@ router.post("/", async (req, res) => {
         user: newUser,
         message: "You are now signed in as a new user!",
       });
-      res.redirect("/dashboard");
     });
   } catch (err) {
     console.log(err);

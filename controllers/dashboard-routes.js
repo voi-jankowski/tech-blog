@@ -101,23 +101,4 @@ router.get("/edit/:id", withAuth, async (req, res) => {
   }
 });
 
-// Change your password route
-router.get("/change-password", withAuth, async (req, res) => {
-  try {
-    // If the user is not logged in, redirect the request to another route
-    if (!req.session.loggedIn) {
-      res.redirect("/login");
-      return;
-    }
-
-    res.render("change-password", {
-      loggedIn: req.session.loggedIn,
-    });
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
-
-module.exports = router;
-
 module.exports = router;
