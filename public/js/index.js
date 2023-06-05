@@ -27,6 +27,12 @@ $("#textarea1").val(
 // Initialize modal
 $(document).ready(function () {
   $(".modal").modal();
+  // Check if URL contains loggedIn=false query parameter
+  const url = window.location.href;
+  if (url.includes("loggedIn=false")) {
+    // If so, open the login modal
+    $("#login-modal").modal("open");
+  }
 });
 
 // Sign up function
