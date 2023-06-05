@@ -48,6 +48,10 @@ main {
   color: var(--red) !important;
 }
 
+.user-alert {
+  color: var(--red);
+}
+
 .collection-item {
   border: 3px solid var(--red);
   border-radius: 5px;

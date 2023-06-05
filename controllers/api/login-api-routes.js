@@ -17,9 +17,7 @@ router.post("/", async (req, res) => {
     console.log(user);
     // If there is no matching user, return an error
     if (!user) {
-      res
-        .status(400)
-        .json({ message: "Incorrect username or password, please try again" });
+      res.status(400).json("Incorrect username or password, please try again.");
       return;
     }
 
@@ -29,14 +27,12 @@ router.post("/", async (req, res) => {
       user.password
     );
     if (!validPassword) {
-      res
-        .status(400)
-        .json({ message: "Incorrect username or password, please try again" });
+      res.status(400).json("Incorrect username or password, please try again.");
       return;
     }
     // Create session variables based on the logged in user
-    req.session.user_id = user.id; // Corrected variable name
-    req.session.username = user.username; // Corrected variable name
+    req.session.user_id = user.id;
+    req.session.username = user.username;
     req.session.loggedIn = true;
 
     req.session.save(() => {

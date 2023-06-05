@@ -33,6 +33,14 @@ $(document).ready(function () {
     // If so, open the login modal
     $("#login-modal").modal("open");
   }
+  // Check if URL contains status=400 query parameter, if so display message from query parameter
+  if (url.includes("status=400")) {
+    // If so, display an alert
+    $("#login-modal").modal("open");
+    $("#status400alert").text(
+      "Incorrect username or password, please try again."
+    );
+  }
 });
 
 // Sign up function
@@ -71,8 +79,12 @@ const loginFormHandler = async (event) => {
       console.log("logged in");
       location.reload(); // Refresh the page
     } else {
-      console.log("failed to log in");
-      console.log(response);
+      if (response.status === 400) {
+        window.location.replace("/?status=400");
+      } else {
+        console.log("failed to log in");
+        console.log(response);
+      }
     }
   }
 };
