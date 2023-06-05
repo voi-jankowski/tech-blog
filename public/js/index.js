@@ -16,11 +16,6 @@ $(document).ready(function () {
   M.updateTextFields();
 });
 
-// Prefill the textarea field
-
-$("#textarea1").val(
-  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-);
 // M.textareaAutoResize($("#textarea1"));
 // M.textareaAutoResize($("#create-post-textarea"));
 

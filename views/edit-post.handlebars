@@ -3,7 +3,7 @@
   <form class="col s12">
     <div class="row">
       <div class="input-field col s12">
-        <input value="Post Title" id="update-post-title" type="text" />
+        <input value="{{title}}" id="update-post-title" type="text" />
         <label class="active" for="update-post-title">Post Title</label>
       </div>
     </div>
@@ -25,3 +25,7 @@
   Save the changes
   <i class="material-icons right">save</i>
 </button>
+
+<script>
+  $("#textarea1").val("{{content}}");
+</script>

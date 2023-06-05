@@ -64,12 +64,6 @@ router.get("/new", withAuth, async (req, res) => {
 // Edit a post route
 router.get("/edit/:id", withAuth, async (req, res) => {
   try {
-    // If the user is not logged in, redirect the request to another route
-    if (!req.session.loggedIn) {
-      res.redirect("/login");
-      return;
-    }
-
     const postData = await Post.findByPk(req.params.id);
 
     if (!postData) {
@@ -79,7 +73,8 @@ router.get("/edit/:id", withAuth, async (req, res) => {
 
     // Serialize the data
     const post = postData.get({ plain: true });
-
+    console.log("post:");
+    console.log(post);
     res.render("edit-post", {
       post,
       loggedIn: req.session.loggedIn,
