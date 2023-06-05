@@ -28,3 +28,47 @@ M.textareaAutoResize($("#create-post-textarea"));
 $(document).ready(function () {
   $(".modal").modal();
 });
+
+// Sign up function
+
+// Login function
+const loginFormHandler = async (event) => {
+  event.preventDefault();
+
+  // Collect values from the login form
+  const usernameLogin = $("#login-username").val().trim();
+  const passwordLogin = $("#login-password").val().trim();
+
+  if (usernameLogin === "") {
+    $("#login-username-error").text("Please, enter your email!");
+  }
+
+  if (passwordLogin === "") {
+    $("#login-password-error").text("Please, enter your password!");
+  }
+
+  // Create an object with the email and password
+  const loginData = {
+    username: usernameLogin,
+    password: passwordLogin,
+  };
+
+  if (usernameLogin && passwordLogin) {
+    // Send a POST request to the API endpoint
+    const response = await fetch("/api/users/login", {
+      method: "POST",
+      body: JSON.stringify(loginData),
+      headers: { "Content-Type": "application/json" },
+    });
+
+    if (response.ok) {
+      console.log("logged in");
+      location.reload(); // Refresh the page
+    } else {
+      console.log("failed to log in");
+      alert(response.statusText);
+    }
+  }
+};
+
+$("#login-submit").on("click", loginFormHandler);
