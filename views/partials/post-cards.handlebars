@@ -8,28 +8,101 @@
     <h6 class="right-align">Posted by <span class="bolder">{{user.username}}</span></h6>
   </div>
   <div class="card-action">
-    <ul class="collapsible popout">
-      <li>
-        <div class="collapsible-header">
-          <i class="material-icons">comment</i>Comments
-          <span class="badge">{{comments.length}}</span>
-        </div>
-        {{#if comments}}
-        {{#each comments as |comment|}}
-        <div class="collapsible-body">
-          <p>{{comment_text}}</p>
-          <h6> - {{user.username}}</h6>
+    
+        <ul class="collapsible popout">
+            {{#if posts}}
+                <li>
+                    <div class="collapsible-header">
+                    <i class="material-icons">comment</i>Comments
+                    <span class="badge">{{comments.length}}</span>
+                    </div>
+                    {{#if comments}}
+                    {{#each comments as |comment|}}
+                    <div class="collapsible-body">
+                    <p>{{comment_text}}</p>
+                    <h6> - {{user.username}}</h6>
 
-        {{/each}}
-        {{else}}
-        <div class="collapsible-body">
-            <p>No comments yet!</p>
-        {{/if}}
-          <a
-            class="every-btn btn-floating right btn-small waves-effect waves-light pulse"
-          ><i class="material-icons">add</i></a>
-        </div>
-      </li>
-    </ul>
+                    {{/each}}
+                    {{else}}
+                    <div class="collapsible-body">
+                        <p>No comments yet!</p>
+                    {{/if}}
+                    <a
+                        class="every-btn btn-floating right btn-small waves-effect waves-light pulse"
+                    ><i class="material-icons">add</i></a>
+                    </div>
+                </li>
+            {{else}}
+                <li>
+                  <div class="collapsible-header">
+                    <i class="material-icons">edit</i>Edit your post
+                  </div>
+                  <div class="collapsible-body">
+                    <!-- Update form -->
+                    <div class="row">
+                      <form class="col s12">
+                        <div class="row">
+                          <div class="input-field col s12">
+                            <input
+                              value="Post Title"
+                              id="post-title"
+                              type="text"
+                            />
+                            <label class="active" for="post-title"
+                              >Post Title</label
+                            >
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="input-field col s12">
+                            <textarea
+                              id="textarea1"
+                              class="materialize-textarea"
+                            ></textarea>
+                            <label for="textarea1">Post Content</label>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                    <!-- Submit Button -->
+                    <button
+                      class="every-btn btn waves-effect waves-light"
+                      type="submit"
+                      name="action"
+                    >
+                      Save the changes
+                      <i class="material-icons right">save</i>
+                    </button>
+                  </div>
+                </li>
+
+                <li>
+                  <div class="collapsible-header">
+                    <i class="material-icons">delete</i>Delete your post
+                  </div>
+                  <div class="collapsible-body">
+                    <!-- Alert info -->
+                    <div class="row">
+                      <h6 class="col s6">
+                        Are you sure you want to delete this post?
+                      </h6>
+                      <!-- Delete button -->
+                      <div class="col s6">
+                        <button
+                          class="every-btn btn waves-effect waves-light"
+                          type="submit"
+                          name="action"
+                        >
+                          Delete
+                          <i class="material-icons right">delete</i>
+                        </button>
+                    </div>
+                    
+                  </div>
+                </li>
+            {{/if}}
+        </ul>
+    
   </div>
 </div>

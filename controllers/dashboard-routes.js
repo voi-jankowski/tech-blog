@@ -1,7 +1,6 @@
 const router = require("express").Router();
 
 const { User, Post, Comment } = require("../models");
-const { route } = require("./home-routes");
 
 // Get all the posts of the user for the main dashboard page
 router.get("/", async (req, res) => {
@@ -27,11 +26,12 @@ router.get("/", async (req, res) => {
     }
 
     // Serialize the data
-    const posts = postData.map((post) => post.get({ plain: true }));
-
+    const userPosts = postData.map((post) => post.get({ plain: true }));
+    console.log("userPosts:");
+    userPosts.forEach((post) => console.log(post));
     // Pass serialized data and session flag into template
     res.render("dashboard", {
-      posts,
+      userPosts,
       loggedIn: req.session.loggedIn,
     });
   } catch (err) {
