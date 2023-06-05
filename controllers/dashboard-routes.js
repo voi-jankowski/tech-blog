@@ -19,6 +19,16 @@ router.get("/", withAuth, async (req, res) => {
       ],
     });
 
+    // If there is status=failed  query parameter, then render the dashboard template with an error message
+    if (req.url.includes("status=failed")) {
+      const errorMessage = "Something went wrong. Please try again.";
+      res.render("dashboard", {
+        errorMessage,
+        loggedIn: req.session.loggedIn,
+      });
+      return;
+    }
+
     // If there are no posts, then render the dashboard template without posts
     if (!postData) {
       res.render("dashboard", {
@@ -44,7 +54,7 @@ router.get("/", withAuth, async (req, res) => {
 // Create a new post route
 router.get("/new", withAuth, async (req, res) => {
   try {
-    // If there is status=failed  query parameter, then render the dashboard template with an error message
+    // If there is status=failed  query parameter, then render the new post template with an error message
     if (req.url.includes("status=failed")) {
       const errorMessage = "Something went wrong. Please try again.";
       res.render("new-post", {
@@ -71,7 +81,7 @@ router.get("/edit/:id", withAuth, async (req, res) => {
     // console.log("post:");
     // console.log(post);
 
-    // If there is status=failed  query parameter, then render the dashboard template with an error message
+    // If there is status=failed  query parameter, then render the edit post template with an error message
     if (req.url.includes("status=failed")) {
       const errorMessage = "Something went wrong. Please try again.";
       res.render("edit-post", {

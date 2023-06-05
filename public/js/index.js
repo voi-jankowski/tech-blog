@@ -168,3 +168,22 @@ const editPostFormHandler = async (event) => {
 };
 
 $("#edit-post-submit").on("click", editPostFormHandler);
+
+// Delete post function
+const deletePostFormHandler = async (event) => {
+  // Get the post ID from the data-post-id attribute
+  const post_id = $(event.target).attr("data-post-id");
+
+  // Send a DELETE request to the API endpoint
+  const response = await fetch(`/api/post/${post_id}`, {
+    method: "DELETE",
+  });
+
+  if (response.ok) {
+    window.location.replace("/dashboard");
+  } else {
+    window.location.replace(`/dashboard?status=failed`);
+  }
+};
+
+$(".delete-post-btn").on("click", deletePostFormHandler);

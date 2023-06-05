@@ -15,6 +15,9 @@
   <div class="page-title">
     <h5>Your Posts</h5>
   </div>
+  {{#if errorMessage}}
+    <h5 class="user-alert">{{errorMessage}}</h5>
+  {{/if}}
 
   <!-- Create your blog posts with cards -->
 
@@ -73,9 +76,8 @@
                     <!-- Delete button -->
                     <div class="col s6">
                       <button
-                        class="every-btn btn waves-effect waves-light"
-                        type="submit"
-                        name="action"
+                        class="every-btn btn waves-effect waves-light delete-post-btn"
+                        data-post-id="{{id}}"
                       >
                         Delete
                         <i class="material-icons right">delete</i>
