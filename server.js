@@ -18,7 +18,8 @@ const sess = {
   secret: secret,
   // set cookie to expire in 15 minutes
   cookie: {
-    maxAge: 900000,
+    // maxAge: 900000,
+    maxAge: 24 * 60 * 60 * 1000, // expires after 1 day
     secure: false,
     httpOnly: true,
     sameSite: "strict",

@@ -2,8 +2,10 @@ const router = require("express").Router();
 
 const { User, Post, Comment } = require("../models");
 
+const withAuth = require("../utils/auth");
+
 // Get all the posts of the user for the main dashboard page
-router.get("/", async (req, res) => {
+router.get("/", withAuth, async (req, res) => {
   try {
     const postData = await Post.findAll({
       where: {
@@ -40,11 +42,15 @@ router.get("/", async (req, res) => {
 });
 
 // Create a new post route
-router.get("/new", async (req, res) => {
+router.get("/new", withAuth, async (req, res) => {
   try {
-    // If the user is not logged in, redirect the request to another route
-    if (!req.session.loggedIn) {
-      res.redirect("/login");
+    // If there is status=400  query parameter, then render the dashboard template with an error message
+    if (req.url.includes("status=400")) {
+      const errorMessage = "Something went wrong. Please try again.";
+      res.render("new-post", {
+        errorMessage,
+        loggedIn: req.session.loggedIn,
+      });
       return;
     }
     res.render("new-post", {
@@ -56,7 +62,7 @@ router.get("/new", async (req, res) => {
 });
 
 // Edit a post route
-router.get("/edit/:id", async (req, res) => {
+router.get("/edit/:id", withAuth, async (req, res) => {
   try {
     // If the user is not logged in, redirect the request to another route
     if (!req.session.loggedIn) {
@@ -84,7 +90,7 @@ router.get("/edit/:id", async (req, res) => {
 });
 
 // Change your password route
-router.get("/change-password", async (req, res) => {
+router.get("/change-password", withAuth, async (req, res) => {
   try {
     // If the user is not logged in, redirect the request to another route
     if (!req.session.loggedIn) {

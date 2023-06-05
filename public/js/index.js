@@ -77,7 +77,7 @@ const loginFormHandler = async (event) => {
 
     if (response.ok) {
       console.log("logged in");
-      location.reload(); // Refresh the page
+      window.location.replace("/dashboard");
     } else {
       if (response.status === 400) {
         window.location.replace("/?status=400");
@@ -90,3 +90,45 @@ const loginFormHandler = async (event) => {
 };
 
 $("#login-submit").on("click", loginFormHandler);
+
+// Create new post function
+const newPostFormHandler = async (event) => {
+  event.preventDefault();
+
+  // Collect values from the login form
+  const title = $("#create-post-title").val().trim();
+  const content = $("#create-post-content").val().trim();
+
+  if (title === "") {
+    $("#create-title-error").text("Please, enter a title!");
+  }
+
+  if (content === "") {
+    $("#create-content-error").text("Please, enter content!");
+  }
+
+  // Create an object with the email and password
+  const postData = {
+    title,
+    content,
+  };
+  console.log(postData);
+
+  if (title && content) {
+    // Send a POST request to the API endpoint
+    const response = await fetch("/api/post", {
+      method: "POST",
+      body: JSON.stringify(postData),
+      headers: { "Content-Type": "application/json" },
+    });
+
+    if (response.ok) {
+      console.log("post created");
+      window.location.replace("/dashboard");
+    } else {
+      console.log("failed to create post");
+      console.log(response);
+      window.location.replace("/dashboard/new?status=400");
+    }
+  }
+};
