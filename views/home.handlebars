@@ -1,6 +1,6 @@
- {{#if errorMessage}}
-    <h5 class="user-alert">{{errorMessage}}</h5>
-  {{/if}}
+{{#if errorMessage}}
+  <h5 class="user-alert">{{errorMessage}}</h5>
+{{/if}}
 
 {{#if posts}}
   <!-- Create blog posts with cards -->
@@ -31,13 +31,13 @@
                     <div class="collapsible-body">
                       <p>{{comment_text}}</p>
                       <h6> - {{user.username}}</h6>
-                     {{> add-comment postId = post.id}}
+                       {{> add-comment postId = post.id}}
                     </div>
                   {{/each}}
                 {{else}}
                   <div class="collapsible-body">
                     <p>No comments yet!</p>
-                    {{> add-comment postId = post.id}}
+                     {{> add-comment postId = post.id}}
                   </div>
                 {{/if}}
               </li>

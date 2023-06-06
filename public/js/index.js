@@ -17,20 +17,9 @@ $(document).ready(function () {
 });
 
 // Resize the text areas automatically when the text is long
-M.textareaAutoResize($("#edit-post-content"));
-M.textareaAutoResize($("#create-post-textarea"));
-
-// Restrict comment-modals to only when logged in
-$(document).on("click", ".comment-btn", function (event) {
-  event.preventDefault();
-
-  if (isLoggedIn) {
-    const targetModal = $(this).attr("href");
-    $(targetModal).modal();
-    $(targetModal).modal("open");
-  } else {
-    window.location.replace("/?loggedIn=false");
-  }
+$(document).ready(function () {
+  M.textareaAutoResize($("#edit-post-content"));
+  M.textareaAutoResize($("#create-post-textarea"));
 });
 
 // Initialize modal
@@ -255,17 +244,13 @@ const newCommentFormHandler = async (event) => {
   event.preventDefault();
 
   // Collect values from the add-comment form
-  const postId = $(this).data("post-id");
-  const commentTextarea = $(this)
-    .closest(".modal")
-    .find(".materialize-textarea");
-  const commentText = commentTextarea.val();
+  const postId = $(event.target).data("post-id");
+  const commentText = $(`#comment-text${postId}`).val().trim();
 
+  console.log(postId);
+  console.log(commentText);
   if (commentText === "") {
-    const commentError = $(this)
-      .closest(".modal")
-      .find(".create-comment-error");
-    commentError.text("Please, enter a comment!");
+    $(`#comment-text-error${postId}`).text("Please, enter a comment!");
   }
 
   // Create an object with the comment text
@@ -289,4 +274,4 @@ const newCommentFormHandler = async (event) => {
   }
 };
 
-$(".create-comment-btn").on("click", newCommentFormHandler);
+$(".comment-save-btn").on("click", newCommentFormHandler);
