@@ -34,6 +34,17 @@ nav li a:hover {
   background-color: var(--yellow) !important;
 }
 
+/* Adjust the size of the logo image */
+#navbar-logo img {
+  height: 100px;
+  margin-top: -22px;
+}
+
+#footer-logo img {
+  height: 200px;
+  margin-top: -30px;
+}
+
 main {
   margin: 0 14% auto;
   flex: 1 0 auto;
