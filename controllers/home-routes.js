@@ -22,23 +22,35 @@ router.get("/", async (req, res) => {
 
     // Serialize data so the template can read it
     const posts = postData.map((post) => post.get({ plain: true }));
+    posts.forEach((post) => {
+      console.log(post);
+    });
 
-    // If there is status=failed  query parameter, then render the homepage with an error message
-    if (req.url.includes("status=failed")) {
-      const errorMessage = "Your comment was not submitted. Please try again.";
+    // If req.session.loggedIn is false render the basic homepage
+    if (!req.session.loggedIn) {
       res.render("home", {
         posts,
-        errorMessage,
-        loggedIn: req.session.loggedIn,
       });
+
       return;
     }
-    console.log("logged in: " + req.session.loggedIn);
-    // Pass serialized data and session flag into template
-    res.render("home", {
-      posts,
-      loggedIn: req.session.loggedIn,
-    });
+
+    // If req.session.loggedIn is true render the logged homepage
+    if (req.session.loggedIn) {
+      // If there is status=failed  query parameter, then render the homepage with an error message
+      if (req.url.includes("status=failed")) {
+        const errorMessage =
+          "Your comment was not submitted. Please try again.";
+        res.render("home-logged", {
+          posts,
+          errorMessage,
+        });
+        return;
+      }
+      res.render("home-logged", {
+        posts,
+      });
+    }
   } catch (err) {
     res.status(500).json(err);
   }

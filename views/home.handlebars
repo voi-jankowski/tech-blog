@@ -4,11 +4,9 @@
 
 {{#if posts}}
   <!-- Create blog posts with cards -->
-
   <div class="row">
     <div class="col s12 m12">
       {{#each posts as |post|}}
-
         <div class="card darken-1 hoverable">
           <div class="card-content">
             <h5 class="post-title bolder">{{title}}</h5>
@@ -17,7 +15,8 @@
               {{content}}
             </p>
             <h6 class="right-align">Posted by
-              <span class="bolder">{{user.username}}</span></h6>
+              <span class="bolder">{{user.username}}</span>
+            </h6>
           </div>
           <div class="card-action">
             <ul class="collapsible popout">
@@ -27,28 +26,30 @@
                   <span class="badge">{{comments.length}}</span>
                 </div>
                 {{#if comments}}
-                  {{#each comments as |comment|}}
-                    <div class="collapsible-body">
+
+                  <div class="collapsible-body">
+                    {{#each comments as |comment|}}
                       <p>{{comment_text}}</p>
                       <h6> - {{user.username}}</h6>
-                       {{> add-comment postId = post.id}}
-                    </div>
-                  {{/each}}
+                      <br />
+                    {{/each}}
+                  </div>
+
                 {{else}}
                   <div class="collapsible-body">
                     <p>No comments yet!</p>
-                     {{> add-comment postId = post.id}}
                   </div>
                 {{/if}}
               </li>
             </ul>
           </div>
         </div>
-
       {{/each}}
     </div>
   </div>
-
 {{else}}
-
+  <div class="page-title">
+    <h4>Tech-Tonic is empty - go to Dashboard and add your first post!</h4>
+    <h2><i class="material-icons right"></i>bubble_chart</h2>
+  </div>
 {{/if}}

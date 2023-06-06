@@ -1,0 +1,135 @@
+{{#if errorMessage}}
+  <h5 class="user-alert">{{errorMessage}}</h5>
+{{/if}}
+
+{{#if posts}}
+  <!-- Create blog posts with cards -->
+  <div class="row">
+    <div class="col s12 m12">
+      {{#each posts as |post|}}
+        <div class="card darken-1 hoverable">
+          <div class="card-content">
+            <h5 class="post-title bolder">{{title}}</h5>
+            <br />
+            <p>
+              {{content}}
+            </p>
+            <h6 class="right-align">Posted by
+              <span class="bolder">{{user.username}}</span>
+            </h6>
+          </div>
+          <div class="card-action">
+            <ul class="collapsible popout">
+              <li>
+                <div class="collapsible-header">
+                  <i class="material-icons">comment</i>Comments
+                  <span class="badge">{{comments.length}}</span>
+                </div>
+                {{#if comments}}
+
+                  <div class="collapsible-body">
+                    {{#each comments as |comment|}}
+                      <p>{{comment_text}}</p>
+                      <h6> - {{user.username}}</h6>
+                      <br />
+                    {{/each}}
+                    <a
+                      class="every-btn btn-floating right btn-small waves-effect waves-light pulse modal-trigger comment-btn"
+                      href="#comment-modal{{id}}"
+                    >
+                      <i class="material-icons">add</i>
+                    </a>
+                    <!-- Modal for new comments -->
+                    <div
+                      id="comment-modal{{id}}"
+                      class="modal modal-fixed-footer comment-modal"
+                    >
+                      <div class="modal-content">
+                        <h5>Add your comment.</h5>
+                        <div class="row">
+                          <form class="col s12" data-post-id="{{id}}">
+                            <div class="row">
+                              <div class="input-field col s12">
+                                <input id="comment-text{{id}}" type="text" />
+                                <label for="comment-text{{id}}">Write your
+                                  comment here...</label>
+                                <span
+                                  class="helper-text"
+                                  id="create-comment-error{{id}}"
+                                ></span>
+                              </div>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                        <!-- Submit Button -->
+                        <button
+                          class="every-btn create-btn btn waves-effect waves-light comment-save-btn"
+                          data-post-id="{{id}}"
+                        >
+                          Save
+                          <i class="material-icons right">save</i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
+                {{else}}
+                  <div class="collapsible-body">
+                    <p>No comments yet!</p>
+                    <a
+                      class="every-btn btn-floating right btn-small waves-effect waves-light pulse modal-trigger comment-btn"
+                      href="#comment-modal{{id}}"
+                    >
+                      <i class="material-icons">add</i>
+                    </a>
+                    <!-- Modal for new comments -->
+                    <div
+                      id="comment-modal{{id}}"
+                      class="modal modal-fixed-footer comment-modal"
+                    >
+                      <div class="modal-content">
+                        <h5>Add your comment.</h5>
+                        <div class="row">
+                          <form class="col s12" data-post-id="{{id}}">
+                            <div class="row">
+                              <div class="input-field col s12">
+                                <input id="comment-text{{id}}" type="text" />
+                                <label for="comment-text{{id}}">Write your
+                                  comment here...</label>
+                                <span
+                                  class="helper-text"
+                                  id="create-comment-error{{id}}"
+                                ></span>
+                              </div>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                        <!-- Submit Button -->
+                        <button
+                          class="every-btn create-btn btn waves-effect waves-light comment-save-btn"
+                          data-post-id="{{id}}"
+                        >
+                          Save
+                          <i class="material-icons right">save</i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                {{/if}}
+              </li>
+            </ul>
+          </div>
+        </div>
+      {{/each}}
+    </div>
+  </div>
+{{else}}
+  <div class="page-title">
+    <h4>Tech-Tonic is empty - go to Dashboard and add your first post!</h4>
+    <h2><i class="material-icons right"></i>bubble_chart</h2>
+  </div>
+{{/if}}
