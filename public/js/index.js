@@ -20,6 +20,19 @@ $(document).ready(function () {
 M.textareaAutoResize($("#edit-post-content"));
 M.textareaAutoResize($("#create-post-textarea"));
 
+// Restrict comment-modals to only when logged in
+$(document).on("click", ".comment-btn", function (event) {
+  event.preventDefault();
+
+  if (isLoggedIn) {
+    const targetModal = $(this).attr("href");
+    $(targetModal).modal();
+    $(targetModal).modal("open");
+  } else {
+    window.location.replace("/?loggedIn=false");
+  }
+});
+
 // Initialize modal
 $(document).ready(function () {
   $(".modal").modal();
@@ -236,3 +249,44 @@ const deletePostFormHandler = async (event) => {
 };
 
 $(".delete-post-btn").on("click", deletePostFormHandler);
+
+// Create new comment function
+const newCommentFormHandler = async (event) => {
+  event.preventDefault();
+
+  // Collect values from the add-comment form
+  const postId = $(this).data("post-id");
+  const commentTextarea = $(this)
+    .closest(".modal")
+    .find(".materialize-textarea");
+  const commentText = commentTextarea.val();
+
+  if (commentText === "") {
+    const commentError = $(this)
+      .closest(".modal")
+      .find(".create-comment-error");
+    commentError.text("Please, enter a comment!");
+  }
+
+  // Create an object with the comment text
+  const commentData = {
+    comment_text: commentText,
+  };
+
+  if (commentText) {
+    // Send a POST request to the API endpoint
+    const response = await fetch(`/api/comment/${postId}`, {
+      method: "POST",
+      body: JSON.stringify(commentData),
+      headers: { "Content-Type": "application/json" },
+    });
+
+    if (response.ok) {
+      window.location.replace(`/`);
+    } else {
+      window.location.replace(`/?status=failed`);
+    }
+  }
+};
+
+$(".create-comment-btn").on("click", newCommentFormHandler);
