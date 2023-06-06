@@ -44,11 +44,13 @@ router.get("/", async (req, res) => {
         res.render("home-logged", {
           posts,
           errorMessage,
+          loggedIn: req.session.loggedIn,
         });
         return;
       }
       res.render("home-logged", {
         posts,
+        loggedIn: req.session.loggedIn,
       });
     }
   } catch (err) {
