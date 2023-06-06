@@ -27,21 +27,13 @@
                     <div class="collapsible-body">
                       <p>{{comment_text}}</p>
                       <h6> - {{user.username}}</h6>
-                      <a
-                        class="every-btn btn-floating right btn-small waves-effect waves-light pulse"
-                      >
-                        <i class="material-icons">add</i>
-                      </a>
+                     {{> add-comment}}
                     </div>
                   {{/each}}
                 {{else}}
                   <div class="collapsible-body">
                     <p>No comments yet!</p>
-                    <a
-                      class="every-btn btn-floating right btn-small waves-effect waves-light pulse"
-                    >
-                      <i class="material-icons">add</i>
-                    </a>
+                    {{> add-comment}}
                   </div>
                 {{/if}}
               </li>

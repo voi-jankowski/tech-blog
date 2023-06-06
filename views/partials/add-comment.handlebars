@@ -1,0 +1,36 @@
+<a
+  class="every-btn btn-floating right btn-small waves-effect waves-light pulse modal-trigger"
+  href="#comment-modal"
+>
+  <i class="material-icons">add</i>
+</a>
+
+{{! Modal for new comments }}
+<div id="comment-modal" class="modal modal-fixed-footer">
+  <div class="modal-content">
+    <h5>Add your comment.</h5>
+    <div class="row">
+      <form class="col s12">
+        <div class="row">
+          <div class="input-field col s12">
+            <textarea
+              id="comment-textarea"
+              class="materialize-textarea"
+            ></textarea>
+            <label for="comment-textarea">Write your comment here...</label>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <!-- Submit Button -->
+    <button
+      id="comment-save"
+      class="every-btn create-btn btn waves-effect waves-light"
+    >
+      Save
+      <i class="material-icons right">save</i>
+    </button>
+  </div>
+</div>
