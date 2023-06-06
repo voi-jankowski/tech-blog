@@ -6,6 +6,7 @@ const routes = require("./controllers");
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 const sequelize = require("./config/connection");
 const crypto = require("crypto");
+const helpers = require("./utils/helper");
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -21,8 +22,8 @@ const sess = {
   secret: secret,
   // set cookie to expire in 15 minutes
   cookie: {
-    // maxAge: 900000,
-    maxAge: 24 * 60 * 60 * 1000, // expires after 1 day
+    maxAge: 900000,
+    // maxAge: 24 * 60 * 60 * 1000, // expires after 1 day
     secure: false,
     httpOnly: true,
     sameSite: "strict",
@@ -33,7 +34,7 @@ const sess = {
 };
 
 // Set up Handlebars.js engine with custom helpers
-const hbs = exphbs.create();
+const hbs = exphbs.create({ helpers });
 
 app.use(session(sess));
 
