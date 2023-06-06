@@ -31,7 +31,12 @@
                   <div class="collapsible-body">
                     {{#each comments as |comment|}}
                       <p>{{comment_text}}</p>
-                      <h6> - {{user.username}}</h6>
+
+                      <p>
+                        - added on
+                        {{format_date created_at}}
+                        by
+                        <span class="author">{{user.username}}</span></p>
                       <br />
                     {{/each}}
                   </div>

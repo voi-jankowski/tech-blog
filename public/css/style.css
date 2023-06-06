@@ -54,6 +54,10 @@ h6 a {
   color: var(--red) !important;
 }
 
+.author {
+  font-weight: bolder;
+}
+
 .page-title {
   color: var(--navy);
   margin: 1rem;
