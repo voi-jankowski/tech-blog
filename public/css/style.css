@@ -50,6 +50,10 @@ main {
   flex: 1 0 auto;
 }
 
+h6 a {
+  color: var(--red) !important;
+}
+
 .page-title {
   color: var(--navy);
   margin: 1rem;

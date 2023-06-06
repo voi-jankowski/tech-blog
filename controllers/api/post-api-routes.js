@@ -43,7 +43,7 @@ router.delete("/:id", async (req, res) => {
         id: req.params.id,
       },
     });
-    res.status(200).redirect("/dashboard");
+    res.status(200).json(postData);
   } catch (err) {
     res.status(400).json(err);
   }
