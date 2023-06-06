@@ -123,6 +123,6 @@ The UI was created with [Materialize CSS](https://materializecss.com/about.html)
 
 The location of the project [on GitHub](https://github.com/voi-jankowski/tech-blog).
 
-You can check out the live application [here](https://note-taker-27-04-2023.herokuapp.com/).
+You can check out the live application [here](https://safe-sea-90944.herokuapp.com/).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
