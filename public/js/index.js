@@ -16,12 +16,6 @@ $(document).ready(function () {
   M.updateTextFields();
 });
 
-// Resize the text areas automatically when the text is long
-$(document).ready(function () {
-  M.textareaAutoResize($("#edit-post-content"));
-  M.textareaAutoResize($("#create-post-textarea"));
-});
-
 // Initialize modal
 $(document).ready(function () {
   $(".modal").modal();
