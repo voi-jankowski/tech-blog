@@ -11,7 +11,7 @@ router.use("/dashboard", dashboardRoutes);
 router.use("/logout", logoutRoute);
 router.use("/signup", signupRoute);
 
-// If the url is wrong set status to 404 and display the 404 page
+// // If the url is wrong set status to 404 and display the 404 page
 router.use((req, res) => {
   res.status(404).end();
 });

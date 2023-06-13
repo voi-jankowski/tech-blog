@@ -26,7 +26,7 @@ Post.init(
       allowNull: false,
       validate: {
         // content must be at least 10 characters long
-        len: [10],
+        len: [3],
       },
     },
     // define user_id column
